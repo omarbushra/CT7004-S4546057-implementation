@@ -1,0 +1,7 @@
+model,cv_auprc,validation_auprc,test_auprc,decline_from_cv_pct,decline_from_validation_pct
+LogisticRegression,0.4351,0.3850,0.169762,61.0,55.9
+RandomForest,0.6670,0.4970,0.494528,25.9,0.5
+XGBoost,0.8450,0.6490,0.563114,33.4,13.2
+GCN,0.5214,0.4178,0.395745,24.1,5.3
+GAT,0.5348,0.4345,0.414050,22.6,4.7
+GraphSAGE,0.5836,0.4581,0.423057,27.5,7.6

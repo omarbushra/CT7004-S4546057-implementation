@@ -1,0 +1,30 @@
+$ PYTHONUNBUFFERED=1 python o5.py gnn
+device=cuda
+  features 731/731
+graph: 818,345 nodes, 731,400 edges
+  GCN: test AUPRC 0.4027 (reported 0.3957)
+  GraphSAGE: test AUPRC 0.4187 (reported 0.4231)
+  GAT: test AUPRC 0.4145 (reported 0.4141)
+
+GAT attention by edge source:
+             edge_source  n_edges  mean_attention  sd_attention
+self-loop (own features)   590540        0.475914      0.088039
+               from card   590540        0.452878      0.103100
+             from device   140860        0.298530      0.036273
+  GNNExplainer GCN: 30/30 nodes
+  GNNExplainer GraphSAGE: 30/30 nodes
+  GNNExplainer GAT: 30/30 nodes
+
+gnn stage complete
+
+# This run reconstructs the graph from prepared.parquet and retrains the three
+# architectures at their selected configurations, then runs the attribution
+# analyses that the original `explain` stage could not complete (it was
+# terminated on host memory exhaustion; o5.py reads features in 64-column
+# blocks into a preallocated array instead of materialising the dense matrix).
+#
+# The retrained AUPRC differs from the reported figure by at most 0.0070.
+# Retraining does not reproduce weights bit for bit: the scatter reductions
+# underlying message passing are non-deterministic on CUDA. The figures
+# reported in Chapter Four are those of the original run; this run evidences
+# that they reproduce to within 0.007 on re-execution.

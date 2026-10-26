@@ -1,0 +1,21 @@
+{
+  "nodes_total": 818345,
+  "nodes_transaction": 590540,
+  "nodes_card": 218030,
+  "nodes_device": 9775,
+  "edges_undirected": 731400,
+  "edges_card": 590540,
+  "edges_device": 140860,
+  "transaction_degree_mean": 1.239,
+  "transaction_degree_max": 2,
+  "card_degree_mean": 2.709,
+  "card_degree_max": 1414,
+  "device_edge_coverage": 0.2385,
+  "cards_with_any_fraud": 8118,
+  "cards_entirely_fraud": 5011,
+  "fraud_rate_overall": 0.03499,
+  "edge_homophily_direct": null,
+  "two_hop_homophily_shared_card": 0.9768,
+  "chance_agreement_at_base_rate": 0.9325,
+  "excess_homophily_percentage_points": 4.4
+}

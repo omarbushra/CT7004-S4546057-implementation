@@ -1,0 +1,12 @@
+$ python run_all.py baselines
+==============================================================
+  baselines
+==============================================================
+  LogisticRegression: best val AUPRC=0.3853  {'C': 1.0}
+  RandomForest: best val AUPRC=0.4971  {'n_estimators': 200, 'max_depth': 32, 'min_samples_leaf': 5}
+  XGBoost: best val AUPRC=0.6493  {'n_estimators': 1000, 'max_depth': 8, 'learning_rate': 0.05, 'subsample': 0.7, 'scale_pos_weight': 27.434310083918007}
+  -> outputs/04_05_baseline_raw.csv  (12 rows)
+  -> outputs/04_05_baseline_cv_summary.csv  (3 rows)
+  -> outputs/04_05_baseline_test.csv  (3 rows)
+  -> outputs/04_05_baseline_paired_tests.csv  (2 rows)
+  baselines completed in 4673.1s

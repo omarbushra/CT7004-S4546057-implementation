@@ -1,0 +1,4 @@
+edge_source,n_edges,mean_attention,sd_attention
+self-loop (own features),590540,0.475914,0.088039
+from card,590540,0.452878,0.103100
+from device,140860,0.298530,0.036273

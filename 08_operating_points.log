@@ -1,0 +1,30 @@
+$ PYTHONUNBUFFERED=1 python src/operating_points.py
+GNN probabilities (RSS 0.69 GB)
+  GCN: 88,581 probabilities
+  GAT: 88,581 probabilities
+  GraphSAGE: 88,581 probabilities
+
+baselines (RSS 1.42 GB)
+  train (413378, 739), test (88581, 739), RSS 4.95 GB
+  fitting XGBoost {'n_estimators': 1000, 'max_depth': 8, 'learning_rate': 0.05, 'subsample': 0.7, 'scale_pos_weight': 27.434310083918007}
+    AUPRC 0.5578, RSS 5.21 GB
+    SHAP over 2000 transactions
+  fitting RandomForest {'n_estimators': 200, 'max_depth': 32, 'min_samples_leaf': 5}
+    AUPRC 0.4952, RSS 5.54 GB
+  fitting LogisticRegression {'C': 1}
+ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT.
+    AUPRC 0.1800, RSS 7.54 GB
+  -> outputs/04_07_baseline_attribution.csv  (45 rows)
+  -> outputs/04_05_reproducibility_check.csv  (6 rows)
+
+             model  auprc_stored  auprc_recomputed  abs_difference
+               GCN      0.395745          0.395745        0.000000
+               GAT      0.414050          0.414050        0.000000
+         GraphSAGE      0.423057          0.423057        0.000000
+           XGBoost      0.563114          0.557784        0.005330
+      RandomForest      0.494528          0.495170        0.000642
+LogisticRegression      0.169762          0.179975        0.010213
+  -> outputs/04_05_TABLE_matched_fpr.csv  (24 rows)
+  -> outputs/04_05_TABLE_alert_budget.csv  (12 rows)
+done

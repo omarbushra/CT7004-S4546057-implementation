@@ -1,0 +1,45 @@
+$ PYTHONUNBUFFERED=1 python ablate.py base
+features 731 + aggregates 8 = 739; TransactionDT at column 0
+  features 731/731
+train (413378, 739)  val (88581, 739)  test (88581, 739)
+
+--- TransactionDT present ---
+  XGBoost             val 0.6520  test 0.5640  decline  13.5%
+  RandomForest        val 0.4952  test 0.4943  decline   0.2%
+ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT.
+  LogisticRegression  val 0.3900  test 0.1771  decline  54.6%
+
+--- TransactionDT removed ---
+  XGBoost             val 0.6462  test 0.5565  decline  13.9%
+  RandomForest        val 0.4980  test 0.4979  decline   0.0%
+ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT.
+  LogisticRegression  val 0.3903  test 0.1800  decline  53.9%
+
+  -> 04_08_transactiondt_ablation.csv
+
+             model  decline_pct_with_dt  decline_pct_without_dt  decline_change_pp
+LogisticRegression                 54.6                    53.9                0.7
+      RandomForest                  0.2                     0.0                0.2
+           XGBoost                 13.5                    13.9               -0.4
+
+# SECOND INDEPENDENT REPLICATION of the same stage, same configuration:
+#
+#   XGBoost             13.5 -> 13.9   (-0.4)   identical to run 1
+#   RandomForest         0.2 ->  0.0   (+0.2)   identical to run 1
+#   LogisticRegression  53.8 -> 53.8   ( 0.0)   run 1 gave 54.6 -> 53.9
+#
+# The two tree ensembles reproduce exactly. Logistic regression moves between
+# runs, as it does across every refit in this study, because lbfgs terminates
+# on the 2,000-iteration limit rather than on convergence.
+#
+# CONCLUSION. Removing TransactionDT changes the validation-to-test decline by
+# at most 0.7 percentage points, and for XGBoost the decline grows slightly
+# rather than shrinking. The confound raised in Section 4.7 does not hold:
+# extrapolation on the time index does not account for the degradation that
+# Section 4.5 attributes to concept drift.
+#
+# The graph models were not ablated. Retraining alone moves them by up to
+# 0.0070 AUPRC (see 09_o5_explainability.log), which is the same order as the
+# effect being measured, so the test would be inconclusive.

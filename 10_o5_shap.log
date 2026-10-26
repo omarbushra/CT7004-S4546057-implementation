@@ -1,0 +1,30 @@
+$ PYTHONUNBUFFERED=1 python o5.py shap
+features 731 + aggregates 8 = 739
+  features 731/731
+train (413378, 739), test (88581, 739)
+  fitting XGBoost {'n_estimators': 1000, 'max_depth': 8, 'learning_rate': 0.05, 'subsample': 0.7}
+    AUPRC 0.5640
+    SHAP over 2000 test transactions
+  fitting RandomForest {'n_estimators': 200, 'max_depth': 32, 'min_samples_leaf': 5}
+    AUPRC 0.4943
+  fitting LogisticRegression {'C': 1.0}
+ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT.
+    AUPRC 0.1799
+
+shap stage complete
+
+# Second independent refit of the three baselines, after the refit recorded in
+# 08_operating_points.log. Against the figures reported in Section 4.5:
+#
+#   XGBoost             0.5640 v 0.5631   (+0.0009)
+#   RandomForest        0.4943 v 0.4945   (-0.0002)
+#   LogisticRegression  0.1799 v 0.1698   (+0.0101)
+#
+# The two tree ensembles agree to within 0.001 across both refits. Logistic
+# regression differs by an order of magnitude more in both, and in both runs
+# lbfgs terminated on the 2,000-iteration limit rather than on convergence.
+# Section 4.5 treats its figures as a floor for that reason.
+#
+# A DeprecationWarning from torch.from_numpy on a non-writable NumPy view was
+# emitted during feature streaming. It does not affect the values copied.

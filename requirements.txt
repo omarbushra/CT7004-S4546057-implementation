@@ -1,0 +1,22 @@
+# Core
+numpy>=1.26,<2.2
+pandas>=2.1
+scipy>=1.11
+scikit-learn>=1.4
+pyarrow>=15.0
+
+# Gradient boosting baseline
+xgboost>=2.0
+
+# Imbalance handling (SMOTE for the tabular baselines only)
+imbalanced-learn>=0.12
+
+# Graph learning -- install torch FIRST, matched to your CUDA version:
+#   https://pytorch.org/get-started/locally/
+# then:
+#   pip install torch_geometric
+torch>=2.2
+torch_geometric>=2.5
+
+# Explainability
+shap>=0.44

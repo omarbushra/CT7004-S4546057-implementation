@@ -1,0 +1,4 @@
+model,latency_mean_ms,latency_p95_ms,latency_p99_ms,peak_memory_mb,within_budget
+GCN,4.503,5.375,10.845,2413.43,True
+GAT,5.932,8.082,14.992,2413.46,True
+GraphSAGE,3.593,3.708,10.064,2416.43,True

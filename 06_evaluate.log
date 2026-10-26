@@ -1,0 +1,10 @@
+$ python run_all.py evaluate
+==============================================================
+  evaluate
+==============================================================
+  -> outputs/04_05_all_models_raw.csv  (24 rows)
+  -> outputs/04_05_TABLE_detection_performance.csv  (6 rows)
+  -> outputs/04_05_TABLE_paired_auprc.csv  (5 rows)
+  -> outputs/04_05_TABLE_paired_recall.csv  (5 rows)
+  -> outputs/04_05_TABLE_heldout_test.csv  (6 rows)
+  evaluate completed in 1.2s

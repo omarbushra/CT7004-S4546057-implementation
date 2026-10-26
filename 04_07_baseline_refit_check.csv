@@ -1,0 +1,4 @@
+model,auprc_reported,auprc_refit_operating_points,auprc_refit_o5,max_abs_difference
+XGBoost,0.563114,0.557784,0.5640,0.005330
+RandomForest,0.494528,0.495170,0.4943,0.000642
+LogisticRegression,0.169762,0.179975,0.1799,0.010213

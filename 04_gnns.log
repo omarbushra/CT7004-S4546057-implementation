@@ -1,0 +1,24 @@
+$ FAST=1 CUBLAS_WORKSPACE_CONFIG=:4096:8 python run_all.py gnns
+==============================================================
+  gnns
+==============================================================
+device=cuda  nodes=818,345
+  GCN: best val AUPRC=0.4178  {'hidden': 256, 'layers': 2, 'dropout': 0.5, 'lr': 0.005, 'weight_decay': 0.0005}
+  -> outputs/04_05_gnn_raw.csv  (4 rows)
+  [checkpoint] GCN complete - results written
+  GraphSAGE: best val AUPRC=0.4581  {'hidden': 128, 'layers': 3, 'dropout': 0.5, 'lr': 0.001, 'weight_decay': 0.0005}
+  -> outputs/04_05_gnn_raw.csv  (8 rows)
+  [checkpoint] GraphSAGE complete - results written
+Traceback (most recent call last):
+  File "src/gnns.py", line 128, in run
+    _m, a = _fit(kind, data, params, data.train_mask, data.val_mask,
+  File "src/gnns.py", line 76, in _fit
+    loss.backward()
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.78 GiB.
+GPU 0 has a total capacity of 14.56 GiB of which 821.81 MiB is free.
+stage 'gnns' failed with code 1
+
+# GAT at hidden=256 exceeds the 15 GB device: GATConv retains a per-edge
+# message tensor for the backward pass, so its memory scales with the
+# 1,462,800 directed edges rather than with node count. GAT was rerun with
+# the hidden dimension capped at 128 (see colab/gat_only.py and Section 4.4).

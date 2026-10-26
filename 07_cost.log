@@ -1,0 +1,36 @@
+$ FAST=1 PYTHONUNBUFFERED=1 CUBLAS_WORKSPACE_CONFIG=:4096:8 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python run_all.py cost
+==============================================================
+  cost
+==============================================================
+  -> outputs/04_06_hardware.json
+features 1.73 GB, RSS 4.69 GB
+            n  fraud_rate
+split
+test    22146    0.036666
+train  103344    0.025304
+val     22145    0.020817
+  building graph at 25%, RSS 5.14 GB
+  227,099 nodes, RSS 5.39 GB -> GPU
+  GCN @25%: 227,099 nodes, train 12.7s, AUPRC 0.4673
+  GAT @25%: 227,099 nodes, train 13.9s, AUPRC 0.4501
+  GraphSAGE @25%: 227,099 nodes, train 15.9s, AUPRC 0.4999
+  -> outputs/04_06_scaling.csv  (3 rows)
+            n  fraud_rate
+split
+test    44291    0.038834
+train  206689    0.030234
+val     44290    0.043464
+  building graph at 50%, RSS 6.44 GB
+  427,747 nodes, RSS 6.86 GB -> GPU
+  GCN @50%: 427,747 nodes, train 20.3s, AUPRC 0.4189
+  GAT @50%: 427,747 nodes, train 33.0s, AUPRC 0.3433
+  GraphSAGE @50%: 427,747 nodes, train 31.4s, AUPRC 0.4544
+  -> outputs/04_06_scaling.csv  (6 rows)
+  loading graph.pt for 100%, RSS 3.84 GB
+  818,345 nodes, RSS 6.11 GB -> GPU
+  GCN @100%: 818,345 nodes, train 38.2s, AUPRC 0.3793
+  GAT @100%: 818,345 nodes, train 60.6s, AUPRC 0.3901
+  GraphSAGE @100%: 818,345 nodes, train 59.2s, AUPRC 0.3236
+  -> outputs/04_06_scaling.csv  (9 rows)
+  -> outputs/04_06_latency_full_graph.csv  (3 rows)
+  cost completed in 331.8s

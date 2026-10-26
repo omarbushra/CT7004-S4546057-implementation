@@ -1,0 +1,17 @@
+$ FAST=1 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python src/gat_only.py
+device=cuda  nodes=818,345
+  {'hidden': 64, 'layers': 3, 'dropout': 0.4, 'lr': 0.01, 'weight_decay': 0.0005} -> val AUPRC 0.4198
+  {'hidden': 128, 'layers': 2, 'dropout': 0.5, 'lr': 0.005, 'weight_decay': 0.0005} -> val AUPRC 0.4202
+  {'hidden': 128, 'layers': 3, 'dropout': 0.5, 'lr': 0.001, 'weight_decay': 0.0005} -> val AUPRC 0.3498
+  {'hidden': 64, 'layers': 2, 'dropout': 0.5, 'lr': 0.01, 'weight_decay': 0.0005} -> val AUPRC 0.4280
+  {'hidden': 64, 'layers': 2, 'dropout': 0.5, 'lr': 0.005, 'weight_decay': 0.0005} -> val AUPRC 0.4345
+
+  GAT: best val AUPRC=0.4345  {'hidden': 64, 'layers': 2, 'dropout': 0.5, 'lr': 0.005, 'weight_decay': 0.0005}
+    fold 0: AUPRC 0.5375
+    fold 1: AUPRC 0.5328
+    fold 2: AUPRC 0.5343
+    test: AUPRC 0.4141
+  -> outputs/04_05_gnn_raw.csv  (12 rows)
+  -> outputs/04_05_gnn_cv_summary.csv  (3 rows)
+  -> outputs/04_05_gnn_test.csv  (3 rows)
+GAT merged with GCN and GraphSAGE in outputs/

@@ -1,0 +1,4 @@
+model,auprc_reported,auprc_retrained,abs_difference
+GCN,0.3957,0.4027,0.0070
+GraphSAGE,0.4231,0.4187,0.0044
+GAT,0.4141,0.4145,0.0004
